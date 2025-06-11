@@ -1,23 +1,28 @@
 package com.example.tasks.Model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
+@Entity
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class Task {
 
-        private String name;
-        private String description;
-        private String status;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-        public Task() {
-        }
+    @NotBlank(message = "O título da tarefa é obrigatório")
+    private String title;
 
-        public String getName() {
-            return name;
-        }
+    private String description;
 
-        public String getDescription() {
-            return description;
-        }
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Status da tarefa é obrigatório")
+    private TaskStatus status;
 
-        public String getStatus() {
-            return status;
-        }
+    @ManyToOne
+    @JoinColumn(name = "task_group_id", nullable = false)
+    private TaskGroup taskGroup;
 }
