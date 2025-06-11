@@ -1,9 +1,12 @@
 package com.example.tasks.Model;
 
+import com.example.tasks.enums.StatusValidos;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +19,16 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+
+    @NotBlank
+    private String title;
+
     private String description;
-    private String status;
+
+    @NotNull
+    private StatusValidos status;
+
+    private Long taskGroupId;
+
+
 }
