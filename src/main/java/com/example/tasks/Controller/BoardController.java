@@ -35,5 +35,12 @@ public class BoardController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarBoard(@PathVariable Long id, @Valid @RequestBody BoardDto boardDto){
+        return boardService.atualizarBoard(id, boardDto)
+                .map(boardAtualizado -> ResponseEntity.ok(boardAtualizado))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 
 }
