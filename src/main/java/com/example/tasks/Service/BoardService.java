@@ -33,5 +33,18 @@ public class BoardService {
         return  boardRepository.findById(id);
     }
 
+    public Optional<Board> atualizarBoard(Long id, BoardDto boardDto){
+        Optional<Board> boardOptional = boardRepository.findById(id);
+        if (boardOptional.isPresent()) {
+            Board board = boardOptional.get();
+            board.setName(boardDto.getName());
+            board.setDescription(boardDto.getDescription());
+            return Optional.of(boardRepository.save(board));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+
 
 }
