@@ -31,4 +31,6 @@ public class TaskGroup {
 
     @OneToMany
     private List<Task> listaDeTasks;
+
+
 }
