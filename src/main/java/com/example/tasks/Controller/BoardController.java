@@ -42,5 +42,16 @@ public class BoardController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarBoard(@PathVariable Long id){
+        boolean deletado = boardService.deletarBoard(id);
+        if(deletado){
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 
 }
