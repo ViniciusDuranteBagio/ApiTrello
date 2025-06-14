@@ -28,4 +28,12 @@ public class BoardController {
         List<Board> boards = boardService.listarTodos();
         return ResponseEntity.ok(boards);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarPorId(@PathVariable Long id){
+        return boardService.buscarPorId(id).map(board -> ResponseEntity.ok(board))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
 }
