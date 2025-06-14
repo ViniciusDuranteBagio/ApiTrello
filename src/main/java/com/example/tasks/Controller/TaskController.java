@@ -15,10 +15,4 @@ public class TaskController {
 
     private TaskService taskService;
 
-    @GetMapping("/all")
-    public List<Task> getAllTasks() {
-        List<Task> tasks = new ArrayList<>();
-        tasks.add(new Task("name", "description", "status"));
-        return tasks;
-    }
 }

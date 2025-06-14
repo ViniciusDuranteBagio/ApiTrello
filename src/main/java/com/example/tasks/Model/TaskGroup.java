@@ -1,10 +1,7 @@
 package com.example.tasks.Model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -25,10 +22,13 @@ public class TaskGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Min(value = 3, message = "O minimo de caracteres deve ser 3")
+    @Size(min = 3, message = "O minimo de caracteres deve ser 3")
     private String name;
 
-    private Long boardId;
+    @ManyToOne
+    @JoinColumn(name = "board_id")
+    private Board board;
 
+    @OneToMany
     private List<Task> listaDeTasks;
 }
