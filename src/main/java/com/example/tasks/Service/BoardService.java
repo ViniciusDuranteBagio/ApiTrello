@@ -45,6 +45,16 @@ public class BoardService {
         }
     }
 
+    public boolean deletarBoard(Long id){
+        Optional<Board> boardOptional = boardRepository.findById(id);
+        if (boardOptional.isPresent()){
+            boardRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 
 }
