@@ -7,14 +7,17 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Size(min = 3, message = "O nome do board deve ter no mínimo 3 caracteres")
+    @Size(min = 3)
+    @Column(nullable = false)
     private String name;
 
     private String description;

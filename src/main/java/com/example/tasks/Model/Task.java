@@ -6,23 +6,25 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O título da tarefa é obrigatório")
+    @NotBlank
     private String title;
 
     private String description;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "Status da tarefa é obrigatório")
     private TaskStatus status;
 
-    @ManyToOne
-    @JoinColumn(name = "task_group_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "task_group_id")
     private TaskGroup taskGroup;
 }
