@@ -1,10 +1,11 @@
 package com.example.tasks.Model;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 public class Example {
 
-    @NotBlank(message = "O campo 'name' não pode estar em branco")
+    @NotEmpty(message = "O campo 'name' não pode estar em branco")
     private String name;
 
     public Example() {
