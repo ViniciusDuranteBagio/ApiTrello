@@ -1,11 +1,10 @@
 package com.example.tasks.Model;
 
+import com.example.tasks.Enum.Status;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 @Getter
 @Setter
@@ -13,10 +12,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+
+    @NotBlank(message = "Título é obrigatório")
+    private String title;
+
     private String description;
-    private String status;
+
+    @NotNull(message = "Status é obrigatório")
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @ManyToOne
+    @JoinColumn(name = "task_group_id", nullable = false)
+    private TaskGroup taskGroup;
+
+    @Transient
+    private Long taskGroupId;
 }
