@@ -9,6 +9,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,6 +32,14 @@ public class TaskGroupService {
         taskGroup.setBoard(board);
         board.getListaDeTaskGroups().add(taskGroup);
         return taskGroupRepository.save(taskGroup);
+    }
+
+    public List<TaskGroup> listarTodos(){
+        return taskGroupRepository.findAll();
+    }
+
+    public Optional<TaskGroup> buscarPorId( Long id){
+        return taskGroupRepository.findById(id);
     }
 
 }
