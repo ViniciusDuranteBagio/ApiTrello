@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/task-groups")
 public class TaskGroupController {
@@ -20,4 +22,19 @@ public class TaskGroupController {
        TaskGroup criado = taskGroupService.criarTaskGroup(boardId, taskGroupDto );
        return ResponseEntity.ok(criado);
     }
+
+    @GetMapping
+    public ResponseEntity<List<TaskGroup>> listarTodos(){
+        List<TaskGroup> taskGroups = taskGroupService.listarTodos();
+        return ResponseEntity.ok(taskGroups);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarPorId(@PathVariable Long id){
+        return taskGroupService.buscarPorId(id).map(taskGroup -> ResponseEntity.ok(taskGroup))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
+
 }
