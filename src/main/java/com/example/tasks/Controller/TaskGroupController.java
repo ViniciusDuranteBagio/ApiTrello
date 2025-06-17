@@ -35,6 +35,13 @@ public class TaskGroupController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarBoard(@PathVariable Long id, @Valid @RequestBody TaskGroupDto taskGroupDto){
+        return  taskGroupService.atualizarTaskGroup(id, taskGroupDto)
+                .map(taskGroupAtualizado -> ResponseEntity.ok(taskGroupAtualizado))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 
 
 }
