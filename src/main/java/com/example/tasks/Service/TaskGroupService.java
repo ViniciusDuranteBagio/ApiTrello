@@ -1,5 +1,6 @@
 package com.example.tasks.Service;
 
+import com.example.tasks.Dtos.BoardDto;
 import com.example.tasks.Dtos.TaskGroupDto;
 import com.example.tasks.Model.Board;
 import com.example.tasks.Model.TaskGroup;
@@ -40,6 +41,18 @@ public class TaskGroupService {
 
     public Optional<TaskGroup> buscarPorId( Long id){
         return taskGroupRepository.findById(id);
+    }
+
+    public Optional<TaskGroup> atualizarTaskGroup(Long id, TaskGroupDto taskGroupDto){
+        Optional<TaskGroup> taskGroupOptional = taskGroupRepository.findById(id);
+        if (taskGroupOptional.isPresent()){
+            TaskGroup taskGroup = taskGroupOptional.get();
+            taskGroup.setName(taskGroupDto.getName());
+            taskGroup.setBoard(taskGroupDto.getBoard());
+            return  Optional.of(taskGroupRepository.save(taskGroup));
+        } else {
+            return Optional.empty();
+        }
     }
 
 }
