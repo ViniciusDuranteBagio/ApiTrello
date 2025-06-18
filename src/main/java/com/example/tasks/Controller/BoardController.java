@@ -33,7 +33,7 @@ public class BoardController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Board> updateBoard(@PathVariable Long id, @Valid @RequestBody Board board) {
-        return ResponseEntity.ok(boardService.update(id, board));
+        return ResponseEntity.ok(boardService.getById(id));
     }
 
     @DeleteMapping("/{id}")

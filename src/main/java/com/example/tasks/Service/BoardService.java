@@ -4,6 +4,7 @@ import com.example.tasks.Model.Board;
 import com.example.tasks.Repository.BoardRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BoardService {
-
+    @Autowired
     private final BoardRepository boardRepository;
 
     public Board create(Board board) {

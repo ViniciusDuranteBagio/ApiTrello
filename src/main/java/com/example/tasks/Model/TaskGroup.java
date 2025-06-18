@@ -30,5 +30,5 @@ public class TaskGroup {
     private List<Task> tasks;
 
     @Transient
-    private Long boardId; // usado apenas para receber no JSON
+    private Long boardId;
 }
