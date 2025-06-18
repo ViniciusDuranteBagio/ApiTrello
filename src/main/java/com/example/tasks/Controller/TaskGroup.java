@@ -20,6 +20,7 @@ import java.util.List;
 @Entity
 @Table(name = "task_group", schema = "api_trello")
 public class TaskGroup {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotEmpty
@@ -31,7 +32,7 @@ public class TaskGroup {
     @Column(name = "task_group_title")
     private String taskGroupTitle;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false) //*
     @JoinColumn(name = "board_id") // *
     private Board board;
 

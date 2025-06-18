@@ -2,15 +2,12 @@ package com.example.tasks.Model;
 
 import com.example.tasks.Controller.TaskGroup;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.NumberFormat;
 
 @Getter
 @Setter
@@ -19,6 +16,7 @@ import org.springframework.format.annotation.NumberFormat;
 @Entity
 @Table(name = "task", schema = "api_trello")
 public class Task {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotEmpty
