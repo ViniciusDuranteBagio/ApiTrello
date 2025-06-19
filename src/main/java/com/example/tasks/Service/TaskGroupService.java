@@ -55,4 +55,15 @@ public class TaskGroupService {
         }
     }
 
+    public boolean deletarTaskGroup(Long id){
+        Optional<TaskGroup> taskGroupOptional = taskGroupRepository.findById(id);
+        if (taskGroupOptional.isPresent()) {
+            taskGroupRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }
