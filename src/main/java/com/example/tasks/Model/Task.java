@@ -3,6 +3,7 @@ package com.example.tasks.Model;
 import com.example.tasks.Controller.TaskGroup;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,7 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotEmpty
+    @NotNull
     @Column(name = "task_id")
     private Long taskId;
 
