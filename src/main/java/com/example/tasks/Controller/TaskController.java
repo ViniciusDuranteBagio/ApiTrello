@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/api/task")
 public class TaskController {
 
     @Autowired
@@ -20,8 +20,8 @@ public class TaskController {
     public TaskController(TaskService taskService){this.taskService = taskService;}
 
     @PostMapping
-    public Task createTask( @RequestBody Long groupId, Task task){
-        return taskService.createTask(groupId, task);
+    public Task createTask( @RequestBody Task task){
+        return taskService.createTask(task);
     }
 
     @GetMapping

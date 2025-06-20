@@ -1,5 +1,6 @@
 package com.example.tasks.Service;
 
+import com.example.tasks.Model.Board;
 import com.example.tasks.Model.TaskGroup;
 import com.example.tasks.Repository.BoardRepository;
 import com.example.tasks.Repository.TaskGroupRepository;
@@ -20,10 +21,7 @@ public class TaskGroupService {
     }
 
     public TaskGroup createTaskGroup(TaskGroup taskGroup){
-        if(taskGroup.getTaskGroupId() < 0){
-            throw new IllegalArgumentException("O ID do task group não pode ser negativo");
-        }
-        if(taskGroup.getTaskGroupName().isEmpty() || taskGroup.getTaskGroupName().length() < 3){
+        if(taskGroup.getTaskGroupName() == null || taskGroup.getTaskGroupName().length() < 3){
             throw new IllegalArgumentException("O nome do task group não pode ser vazio ou ter menos que 3 caracteres.");
         }
         if(taskGroup.getBoard() == null){
@@ -48,9 +46,11 @@ public class TaskGroupService {
         if(updatedTaskGroup.getTaskGroupName() == null || updatedTaskGroup.getTaskGroupName().length() < 3){
             throw new IllegalArgumentException("O nome não pode ser vazio ou ter menos que 3 caracteres.");
         }
-        if(updatedTaskGroup.getBoard()!=existingTaskGroup.getBoard()){
+        if (!existingTaskGroup.getBoard().getBoardId().equals(updatedTaskGroup.getBoard().getBoardId())) {
             throw new IllegalArgumentException("O board não pode ser alterado.");
         }
+        Board board = boardRepository.findById(updatedTaskGroup.getBoard().getBoardId())
+                .orElseThrow(() -> new IllegalArgumentException("Board não encontrado"));
 
         existingTaskGroup.setTaskGroupName(updatedTaskGroup.getTaskGroupName());
         existingTaskGroup.setBoard(updatedTaskGroup.getBoard());

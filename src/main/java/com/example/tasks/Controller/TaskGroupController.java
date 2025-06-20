@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/task_group")
+@RequestMapping("/api/task_group")
 public class TaskGroupController {
 
     private TaskGroupService taskGroupService;

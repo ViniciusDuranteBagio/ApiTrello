@@ -37,7 +37,7 @@ public class Task {
         private taskStatus taskStatus;
 
         @ManyToOne
-        @JoinColumn(name = "task_group_id") // nome da coluna no banco
+        @JoinColumn(name = "task_group_id")
         private TaskGroup taskGroup;
 
         public enum taskStatus {

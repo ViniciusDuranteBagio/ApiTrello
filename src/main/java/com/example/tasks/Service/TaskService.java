@@ -19,17 +19,17 @@ public class TaskService {
         this.taskGroupRepository = taskGroupRepository;
     }
 
-    public Task createTask(Long groupId, Task task){
+    public Task createTask(Task task){
         if(task.getTaskTitle() == null || task.getTaskTitle().length() < 3){
             throw new IllegalArgumentException("O nome não pode ser vazio ou ter menos que 3 caracteres.");
         }
         if(task.getTaskStatus() == null){
             throw new IllegalArgumentException("o Status é obrigatório.");
         }
-        TaskGroup taskGroup = taskGroupRepository.findById(groupId)
-                .orElseThrow(() -> new IllegalArgumentException("TaskGroup não encontrado."));
-
-        task.setTaskGroup(taskGroup);
+        boolean exists = taskGroupRepository.existsById(task.getTaskGroup().getTaskGroupId());
+        if(!exists){
+            throw new IllegalArgumentException("TaskGroup precisa ser válido");
+        }
         return taskRepository.save(task);
     }
 
