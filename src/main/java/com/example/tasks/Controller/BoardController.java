@@ -2,6 +2,7 @@ package com.example.tasks.Controller;
 
 import com.example.tasks.Model.Board;
 import com.example.tasks.Service.BoardService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 

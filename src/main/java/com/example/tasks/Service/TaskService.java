@@ -1,6 +1,8 @@
 package com.example.tasks.Service;
 
 import com.example.tasks.Model.Task;
+import com.example.tasks.Model.TaskGroup;
+import com.example.tasks.Repository.TaskGroupRepository;
 import com.example.tasks.Repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,19 +12,24 @@ import java.util.NoSuchElementException;
 @Service
 public class TaskService {
     private final TaskRepository taskRepository;
+    private final TaskGroupRepository taskGroupRepository;
 
-    public TaskService(TaskService taskService, TaskRepository taskRepository){this.taskRepository = taskRepository;}
+    public TaskService(TaskRepository taskRepository, TaskGroupRepository taskGroupRepository) {
+        this.taskRepository = taskRepository;
+        this.taskGroupRepository = taskGroupRepository;
+    }
 
-    public Task crateTask(Task task){
-        if(task.getTaskTitle().isEmpty() || task.getTaskTitle().length() < 3){
-            throw new IllegalArgumentException("O nome não pode ser vazio ou ter menos que 3 caracteres.");
-        }
-        if(task.getTaskId() == null || task.getTaskId() < 0){
+    public Task createTask(Long groupId, Task task){
+        if(task.getTaskTitle() == null || task.getTaskTitle().length() < 3){
             throw new IllegalArgumentException("O nome não pode ser vazio ou ter menos que 3 caracteres.");
         }
         if(task.getTaskStatus() == null){
-            throw new IllegalArgumentException("o estatus da task não pode ser nulo.");
+            throw new IllegalArgumentException("o Status é obrigatório.");
         }
+        TaskGroup taskGroup = taskGroupRepository.findById(groupId)
+                .orElseThrow(() -> new IllegalArgumentException("TaskGroup não encontrado."));
+
+        task.setTaskGroup(taskGroup);
         return taskRepository.save(task);
     }
 

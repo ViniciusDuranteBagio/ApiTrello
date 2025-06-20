@@ -18,11 +18,11 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 
-@Table(name = "task_group", schema = "api_trello")
+@Table(name = "task_group")
 public class TaskGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "task_group_id")
+    @Column(name = "task_group_id", unique = true)
     private long taskGroupId;
 
     @Column(name = "task_group_name")
@@ -30,12 +30,12 @@ public class TaskGroup {
     @Size(min = 3)
     private String taskGroupName;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "board_id")
     private Board board;
 
+
     @OneToMany(mappedBy = "taskGroup", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Column(name = "task_group_tasks")
     private List<Task> tasks = new ArrayList<>();
 
 

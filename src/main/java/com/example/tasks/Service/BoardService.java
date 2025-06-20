@@ -16,11 +16,8 @@ public class BoardService {
     }
 
     public Board createBoard(Board board){
-       if(board.getBoardName().isEmpty() || board.getBoardName().length() < 3){
+       if(board.getBoardName() == null || board.getBoardName().length() < 3){
            throw new IllegalArgumentException("O nome não pode ser vazio ou ter menos que 3 caracteres.");
-       }
-       if(board.getBoardId() == null || board.getBoardId() < 0){
-           throw new IllegalArgumentException("O ID não pode ser nulo ou negativo.");
        }
        return boardRepository.save(board);
     }

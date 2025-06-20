@@ -1,44 +1,51 @@
 package com.example.tasks.Model;
 
-import com.example.tasks.Status;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.NumberFormat;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "task", schema = "api_trello")
+@Table(name = "task")
 public class Task {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @NotEmpty
-        @Column(name = "task_id")
+
+        @Column(name = "task_id", unique = true)
         private Long taskId;
 
-        @NotEmpty
-        @Size(min = 3)
+        @NotBlank(message = "O título é obrigatório.")
+        @Size(min = 3 , message = "O título deve ter no mínimo 3 caracteres.")
         @Column(name = "task_title")
         private String taskTitle;
 
         @Column(name = "task_description")
         private String taskDescription;
 
+        @NotNull(message = "O status é obrigatório.")
         @Enumerated(EnumType.STRING)
         @Column(name = "task_status", nullable = false)
-        private Status taskStatus;
+        private taskStatus taskStatus;
 
-        @ManyToOne(optional = false)
-        @JoinColumn(name = "task_group_id")
+        @ManyToOne
+        @JoinColumn(name = "task_group_id") // nome da coluna no banco
         private TaskGroup taskGroup;
 
+        public enum taskStatus {
+                TODO,
+                IN_PROGRESS,
+                DONE;
+        }
+
 }
+
+
