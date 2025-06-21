@@ -20,4 +20,7 @@ public class Task {
     private String name;
     private String description;
     private String status;
+    @ManyToOne
+    @JoinColumn(name = "task_group_id", nullable = false)
+    private TaskGroup taskGroup;
 }
