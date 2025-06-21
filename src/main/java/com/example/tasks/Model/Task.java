@@ -1,6 +1,6 @@
 package com.example.tasks.Model;
 
-import com.example.tasks.Controller.TaskGroup;
+import com.example.tasks.Controller.TaskGroupController;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -38,5 +38,8 @@ public class Task {
 
     @ManyToOne(optional = false) // *
     @JoinColumn(name = "task_group_id") // *
-    private TaskGroup taskGroup;
+    private TaskGroupController taskGroupController;
+
+    public Task(String name, String description, String status) {
+    }
 }

@@ -1,4 +1,4 @@
 package com.example.tasks.Service;
 
-public interface ITaskService {
+public class ITaskService {
 }
