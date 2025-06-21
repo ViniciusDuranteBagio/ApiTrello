@@ -1,33 +1,41 @@
 package com.example.tasks.Controller;
 
-import com.example.tasks.Model.Task;
 import com.example.tasks.Service.TaskService;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import com.example.tasks.DTO.TaskDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
-    @Autowired
-    private TaskService taskService;
 
-    @GetMapping("/all")
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
-    @GetMapping("/{id}")
-    public Optional<Task> getTaskById(@PathVariable Long id) {
-        return taskService.getTaskById(id);
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public TaskDTO createTask(@RequestBody TaskDTO taskDTO) {
+        return taskService.createTask(taskDTO);
     }
 
-    @PostMapping()
-    public Task postTasks(@Valid @RequestBody Task task) {
-        return taskService.saveTask(task);
+    @GetMapping("/task-group/{taskGroupId}")
+    public List<TaskDTO> getTasksByTaskGroup(@PathVariable Long taskGroupId) {
+        return taskService.getTasksByTaskGroup(taskGroupId);
+    }
+
+    @PutMapping("/{id}")
+    public TaskDTO updateTask(@PathVariable Long id, @RequestBody TaskDTO taskDTO) {
+        return taskService.updateTask(id, taskDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteTask(@PathVariable Long id) {
+        taskService.deleteTask(id);
     }
 }
