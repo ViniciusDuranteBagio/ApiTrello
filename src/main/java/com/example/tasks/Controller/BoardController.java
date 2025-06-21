@@ -17,7 +17,7 @@ public class BoardController {
 
     @PostMapping
     public Board createBoard(@RequestBody Board board) {
-        return boardService.createBoard(board); // Chama o serviço para criar o board
+        return boardService.createBoard(board);
     }
 
     @GetMapping

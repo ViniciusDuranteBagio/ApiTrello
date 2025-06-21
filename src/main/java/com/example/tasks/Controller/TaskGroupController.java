@@ -19,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "task_group", schema = "api_trello")
-public class TaskGroup {
+public class TaskGroupController {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
