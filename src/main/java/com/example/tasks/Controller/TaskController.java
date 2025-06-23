@@ -17,31 +17,31 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    // Criar Task
+    
     @PostMapping
     public ResponseEntity<Task> create(@RequestBody Task task) {
         return ResponseEntity.ok(taskService.create(task));
     }
 
-    // Listar todas as Tasks
+    
     @GetMapping
     public ResponseEntity<List<Task>> getAll() {
         return ResponseEntity.ok(taskService.getAll());
     }
 
-    // Buscar Task por ID
+    
     @GetMapping("/{id}")
     public ResponseEntity<Task> getById(@PathVariable Long id) {
         return ResponseEntity.ok(taskService.getById(id));
     }
 
-    // Atualizar Task
+    
     @PutMapping("/{id}")
     public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody Task task) {
         return ResponseEntity.ok(taskService.update(id, task));
     }
 
-    // Deletar Task
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         taskService.delete(id);
