@@ -22,8 +22,7 @@ public class BoardService {
        return boardRepository.save(board);
     }
 
-    public List<Board> getAllBoard(){
-        return boardRepository.findAll();
+    public List<Board> getAllBoard(){return boardRepository.findAll();
     }
 
     public Board getBoardById(Long boardId){
