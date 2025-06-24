@@ -10,8 +10,8 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@AllArgsConstructor  //*
-@NoArgsConstructor //*
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "board", schema = "api_trello")
 public class Board {

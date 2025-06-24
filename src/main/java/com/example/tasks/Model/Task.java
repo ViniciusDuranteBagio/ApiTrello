@@ -32,12 +32,12 @@ public class Task {
     @Column(name = "task_description")
     private String taskDescription;
 
-    @Enumerated(EnumType.STRING) // *
+    @Enumerated(EnumType.STRING)
     @Column(name = "task_status", nullable = false)
     private String taskStatus;
 
-    @ManyToOne(optional = false) // *
-    @JoinColumn(name = "task_group_id") // *
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "task_group_id")
     private TaskGroupController taskGroupController;
 
     public Task(String name, String description, String status) {
