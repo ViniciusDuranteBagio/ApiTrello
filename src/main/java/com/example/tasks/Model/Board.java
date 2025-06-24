@@ -1,5 +1,6 @@
 package com.example.tasks.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -36,5 +37,6 @@ public class Board {
 
     @Column(name = "board_task_group")
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<TaskGroup> taskGroups = new ArrayList<>();
 }

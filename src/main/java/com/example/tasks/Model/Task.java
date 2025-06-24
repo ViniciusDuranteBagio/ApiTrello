@@ -1,5 +1,6 @@
 package com.example.tasks.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -38,6 +39,7 @@ public class Task {
 
         @ManyToOne
         @JoinColumn(name = "task_group_id")
+        @JsonBackReference
         private TaskGroup taskGroup;
 
         public enum taskStatus {
