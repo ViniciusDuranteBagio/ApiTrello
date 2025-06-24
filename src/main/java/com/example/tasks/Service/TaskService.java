@@ -1,5 +1,6 @@
 package com.example.tasks.Service;
 
+import com.example.tasks.Model.Status;
 import com.example.tasks.Model.Task;
 import com.example.tasks.Model.TaskGroup;
 import com.example.tasks.Repository.TaskRepository;
@@ -52,6 +53,16 @@ public class TaskService implements ITaskService {
             throw new EntityNotFoundException("Task não encontrada com ID: " + id);
         }
         repository.deleteById(id);
+    }
+
+    @Override
+    public List<Task> findByTaskGroupId(Long taskGroupId) {
+        return repository.findByTaskGroupId(taskGroupId);
+    }
+
+    @Override
+    public List<Task> findByStatus(Status status) {
+        return repository.findByStatus(status);
     }
 }
 

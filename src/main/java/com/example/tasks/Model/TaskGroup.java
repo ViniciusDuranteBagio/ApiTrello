@@ -41,7 +41,4 @@ public class TaskGroup {
         }
     }
 
-    public Long getId() {
-        return id;
-    }
 }

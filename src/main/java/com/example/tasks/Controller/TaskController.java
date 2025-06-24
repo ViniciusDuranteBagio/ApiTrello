@@ -1,8 +1,10 @@
 package com.example.tasks.Controller;
 
+import com.example.tasks.Model.Status;
 import com.example.tasks.Model.Task;
 import com.example.tasks.Service.TaskService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,19 +25,55 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public Task getById(@PathVariable Long id) {
-        return service.findById(id);
+    public ResponseEntity<Task> getById(@PathVariable Long id) {
+        try {
+            Task task = service.findById(id);
+            return ResponseEntity.ok(task);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
-    public Task create(@RequestBody @Valid Task task) {
-        return service.save(task);
+    public ResponseEntity<Task> create(@RequestBody @Valid Task task) {
+        try {
+            Task savedTask = service.save(task);
+            return ResponseEntity.status(201).body(savedTask);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> update(@PathVariable Long id, @RequestBody @Valid Task task) {
+        try {
+            Task existingTask = service.findById(id);
+            task.setId(id);
+            task.setTaskGroup(existingTask.getTaskGroup());
+            Task updatedTask = service.save(task);
+            return ResponseEntity.ok(updatedTask);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        service.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        try {
+            service.delete(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
+    @GetMapping("/task-group/{taskGroupId}")
+    public List<Task> getByTaskGroupId(@PathVariable Long taskGroupId) {
+        return service.findByTaskGroupId(taskGroupId);
+    }
 
+    @GetMapping("/status/{status}")
+    public List<Task> getByStatus(@PathVariable Status status) {
+        return service.findByStatus(status);
+    }
 }

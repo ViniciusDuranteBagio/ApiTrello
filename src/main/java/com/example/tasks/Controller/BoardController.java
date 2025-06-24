@@ -31,6 +31,32 @@ public class BoardController {
         return repository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Board> getById(@PathVariable Long id) {
+        return repository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Board> update(@PathVariable Long id, @RequestBody @Valid Board board) {
+        return repository.findById(id)
+                .map(existingBoard -> {
+                    board.setId(id);
+                    Board updatedBoard = repository.save(board);
+                    return ResponseEntity.ok(updatedBoard);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 
 }
 
