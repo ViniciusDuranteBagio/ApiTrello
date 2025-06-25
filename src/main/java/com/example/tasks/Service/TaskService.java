@@ -24,4 +24,11 @@ public class TaskService {
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
     }
+
+    public Task create(Task tarefa) {
+        return taskRepository.save(tarefa);
+    }
+    public void deleteAll(){
+        taskRepository.deleteAll();
+    }
 }

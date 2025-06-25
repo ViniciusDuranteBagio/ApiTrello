@@ -24,7 +24,7 @@ public class ExampleController {
 
     /**
      * @RequestBody annotation is used to tell Spring that the object that will be sent to the server will be in the body of the request
-     * 
+     *
      * @param example Example object that will be sent to the server
      * @return The same object that was sent to the server
      */

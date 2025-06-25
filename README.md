@@ -39,7 +39,7 @@ src/
 ├── main/
 │   ├── java/com/example/tasks/
 │   │   ├── controller/     # Endpoints REST
-│   │   ├── service/        # Regras de negócio
+│   │   ├── service/        # Regras de negócio 
 │   │   ├── repository/     # Interface com o banco de dados
 │   │   ├── model/          # Entidades JPA
 │   │   ├── dto/            # (opcional) Objetos de transporte de dados
@@ -53,15 +53,15 @@ src/
 
 ## 🔄 Relacionamento das Entidades
 
-- **Board**
+- **Board**//Quadro
     - `id`, `name`, `description`
-    - Contém uma lista de `TaskGroups`
+    - Contém uma lista de `TaskGroups` 
 
-- **TaskGroup**
+- **TaskGroup** //Grupos de Tarefas
     - `id`, `name`, `boardId`
     - Contém uma lista de `Tasks`
 
-- **Task**
+- **Task** //Tarefas
     - `id`, `title`, `description`, `status`, `taskGroupId`
 
 ---
@@ -71,23 +71,23 @@ src/
 ### Boards
 - [x] Criar board
 - [x] Listar todos os boards
-- [x] Buscar board por ID
-- [x] Atualizar board
-- [x] Deletar board
+- [x] Buscar board por ID //Get
+- [x] Atualizar board //Put
+- [x] Deletar board //Delete
 
 ### TaskGroups
 - [x] Criar task group vinculado a um board
 - [x] Listar task groups
-- [x] Buscar task group por ID
-- [x] Atualizar task group
-- [x] Deletar task group
+- [x] Buscar task group por ID //Get
+- [x] Atualizar task group //Put
+- [x] Deletar task group //Delete
 
 ### Tasks
 - [x] Criar task vinculada a um task group
 - [x] Listar tasks
-- [x] Buscar task por ID
-- [x] Atualizar task
-- [x] Deletar task
+- [x] Buscar task por ID //Get
+- [x] Atualizar task //Put
+- [x] Deletar task //Delete
 
 ---
 
