@@ -38,7 +38,7 @@ public class Task {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "task_group_id")
-    private TaskGroupController taskGroupController;
+    private TaskGroup taskGroup;
 
     public Task(String name, String description, String status) {
     }
