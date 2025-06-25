@@ -34,7 +34,7 @@ Os dados são armazenados em banco de dados em memória **H2**, com persistênci
 ---
 
 ## 🧱 Estrutura do Projeto
-
+```
 src/
 ├── main/
 │   ├── java/com/example/tasks/
@@ -48,6 +48,7 @@ src/
 │       ├── application.properties
 ├── test/
 │   ├── java/com/example/tasks/  # Testes automatizados
+```
 
 ---
 
