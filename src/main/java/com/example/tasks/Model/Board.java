@@ -23,7 +23,7 @@ public class Board {
     private Long boardId;
 
     @NotEmpty
-    @Size(min = 3, max = 100, message = "O nome do quadro deve ter entre 3 e 100 caracteres")
+    @Size(min = 3, max = 100, message = "O nome do deve ter entre 3 e 100 caracteres")
     @Column(name = "board_name")
     private String boardName;
 
