@@ -1,21 +1,22 @@
 package com.example.tasks.Controller;
 
+import com.example.tasks.Controller.TaskResponseDTO;
 import com.example.tasks.Model.Task;
-import com.example.tasks.Service.TaskService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/tasks")
+@RequestMapping("/tasks")
 public class TaskController {
 
-    @Autowired
-    private TaskService taskService;
+    @PostMapping
+    public TaskResponseDTO createTask(@Valid @RequestBody Task task) {
+        // Monta o DTO manualmente
+        TaskResponseDTO response = new TaskResponseDTO();
+        response.setTitle(task.getTitle());
+        response.setDescription(task.getDescription());
+        response.setStatus(task.getStatus());
 
-    @GetMapping("/all")
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
+        return response;
     }
 }
