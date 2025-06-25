@@ -1,5 +1,7 @@
 package com.example.tasks.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.ValidationException;
 import jakarta.validation.constraints.NotBlank;
@@ -28,6 +30,7 @@ public class TaskGroup {
 
     @ManyToOne
     @JoinColumn(name = "board_id", nullable = false)
+    @JsonBackReference
     private Board board;
 
     @OneToMany(mappedBy = "taskGroup", cascade = CascadeType.ALL)

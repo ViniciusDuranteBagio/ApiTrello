@@ -54,7 +54,6 @@ public class TaskGroupController {
         return taskGroupRepository.findById(id)
                 .map(existingTaskGroup -> {
                     taskGroup.setId(id);
-                    // Preserve the existing board if not provided in the update
                     if (taskGroup.getBoard() == null) {
                         taskGroup.setBoard(existingTaskGroup.getBoard());
                     }

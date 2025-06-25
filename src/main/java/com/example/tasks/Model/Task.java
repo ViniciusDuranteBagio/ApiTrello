@@ -1,5 +1,7 @@
 package com.example.tasks.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -32,13 +34,8 @@ public class Task {
     @NotNull(message = "O TaskGroup não pode ser nulo")
     @ManyToOne
     @JoinColumn(name = "task_group_id", nullable = false)
+    @JsonBackReference
     private TaskGroup taskGroup;
 
-    public TaskGroup getTaskGroup() {
-        return taskGroup;
-    }
 
-    public void setTaskGroup(TaskGroup taskGroup) {
-        this.taskGroup = taskGroup;
-    }
 }
