@@ -1,6 +1,6 @@
 package com.example.tasks.Controller;
 
-
+import com.example.tasks.Service.TaskGroupService;
 import com.example.tasks.Model.TaskGroup;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ public class TaskGroupController {
 
     @PostMapping
     public TaskGroup createTaskGroup(@RequestBody TaskGroup taskGroup){
-        return taskGroupService.createTaskGroup(taskGroup);
+        return taskGroupService.createTask(taskGroup);
     }
 
     @GetMapping
@@ -28,7 +28,7 @@ public class TaskGroupController {
 
     @GetMapping("/{id}")
     public TaskGroup getTaskGroupById(@PathVariable Long id){
-        return taskGroupService.getTaskGroupById(id);
+        return taskGroupService.getTaskServiceById(id);
     }
 
 

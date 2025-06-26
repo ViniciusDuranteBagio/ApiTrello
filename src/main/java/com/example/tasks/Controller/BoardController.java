@@ -22,7 +22,7 @@ public class BoardController {
 
     @GetMapping
     public List<Board> getAllBoards(){
-        return boardService.getAllBoard();
+        return boardService.getAllBoards();
     }
 
     @GetMapping("/{id}")
@@ -31,10 +31,10 @@ public class BoardController {
     }
 
     @PutMapping("/{id}")
-    public Board uptadeBoard(@PathVariable Long id, @RequestBody Board updatedBoard){
+    public Board updateBoard(@PathVariable Long id, @RequestBody Board updatedBoard) {
         return boardService.updateBoard(id, updatedBoard);
     }
-
+    
     @DeleteMapping("/{id}")
     public void deleteBoard(@PathVariable Long id){
         boardService.deleteBoard(id);
