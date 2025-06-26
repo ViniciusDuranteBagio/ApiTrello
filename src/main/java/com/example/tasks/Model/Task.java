@@ -16,6 +16,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "não pode ser vazio")
     private String name;
     private String description;
     private String status;
