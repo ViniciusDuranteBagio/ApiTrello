@@ -1,4 +1,4 @@
-package com.example.tasks.Model;
+package com.example.tasks.model;
 
 import jakarta.validation.constraints.NotBlank;
 

@@ -1,10 +1,9 @@
-package com.example.tasks.Controller;
+package com.example.tasks.controller;
 
-import com.example.tasks.Model.Task;
-import com.example.tasks.Service.TaskService;
+import com.example.tasks.model.Task;
+import com.example.tasks.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.example.tasks.Service;
+package com.example.tasks.service;
 
-import com.example.tasks.Model.Task;
-import com.example.tasks.Repository.TaskRepository;
+import com.example.tasks.model.Task;
+import com.example.tasks.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

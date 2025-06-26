@@ -1,6 +1,6 @@
-package com.example.tasks.Controller;
+package com.example.tasks.controller;
 
-import com.example.tasks.Model.Example;
+import com.example.tasks.model.Example;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
