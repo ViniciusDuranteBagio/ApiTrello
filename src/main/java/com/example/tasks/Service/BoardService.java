@@ -22,6 +22,11 @@ public class BoardService {
         return boardRepository.save(board);
     }
 
+    public Board getBoardById(Long id) {
+        return boardRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Board not found with id: " + id));
+    }
+
     // Get all boards from the database
     public List<Board> getAllBoards() {
         return boardRepository.findAll();

@@ -29,9 +29,15 @@ public class TaskGroupService {
         return taskGroupRepository.save(taskGroup); // Save the task group to the database
     }
 
-    // Get task group frm the database
+    // Get task group by id
+    public TaskGroup getTaskServiceById(Long id) {
+        return taskGroupRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Task group not found with id: " + id));
+    }
+
+    // Get all task groups frm the database
     public List<TaskGroup> getAllTaskGroups() {
-        return taskGroupRepository.findAll(); // Get all task groups from the database
+        return taskGroupRepository.findAll();
     }
 
     // Update the task group
