@@ -1,45 +1,43 @@
 package com.example.tasks.Controller;
 
 import com.example.tasks.Model.Board;
-import com.example.tasks.Service.BoardSer;
+import com.example.tasks.Service.BoardService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/board")
+public class BoardController {
+    private BoardService boardService;
 
-public class BoardCon {
-
-    private BoardSer boardSer;
-
-    public BoardCon(BoardSer boardSer){
-        this.boardSer = boardSer;
+    public BoardController(BoardService boardService){
+        this.boardService = boardService;
     }
 
     @PostMapping
-    public Board crearBoard(@RequestBody Board board){
-        return boardSer.criarBoard(board);
+    public Board createBoard(@RequestBody Board board){
+        return boardService.createBoard(board);
     }
 
     @GetMapping
-    public List<Board> pegarBoards(){
-        return boardSer.pegarBoard();
+    public List<Board> getAllBoards(){
+        return boardService.getAllBoard();
     }
 
     @GetMapping("/{id}")
-    public Board pegarBoardById(@PathVariable Long id){
-        return boardSer.getBoardById(id);
+    public Board getBoardById(@PathVariable Long id){
+        return boardService.getBoardById(id);
     }
 
     @PutMapping("/{id}")
     public Board uptadeBoard(@PathVariable Long id, @RequestBody Board updatedBoard){
-        return boardSer.updateBoard(id, updatedBoard);
+        return boardService.updateBoard(id, updatedBoard);
     }
 
     @DeleteMapping("/{id}")
     public void deleteBoard(@PathVariable Long id){
-        boardSer.deleteBoard(id);
+        boardService.deleteBoard(id);
     }
 
 }
