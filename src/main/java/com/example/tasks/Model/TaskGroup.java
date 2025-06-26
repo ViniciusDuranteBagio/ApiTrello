@@ -26,14 +26,14 @@ public class TaskGroup {
 
     @Column(name = "task_group_name")
     @NotEmpty
-    @Size(min = 3, max = 100, message = "O nome do deve ter entre 3 e 100 caracteres")
+    @Size(min = 3, max = 100, message = "The name must be between 3 and 100 characters")
     private String taskGroupName;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "board_id")
     private Board board;
 
-    @OneToMany(mappedBy = "taskGroup", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "taskGroup", cascade = CascadeType.ALL, orphanRemoval = true) //
     @Column(name = "task_group_tasks")
     private List<Task> tasks = new ArrayList<>();
 }

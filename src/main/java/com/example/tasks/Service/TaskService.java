@@ -1,7 +1,6 @@
 package com.example.tasks.Service;
 
 import com.example.tasks.Model.Task;
-import com.example.tasks.Repository.TaskGroupRepository;
 import com.example.tasks.Repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,7 @@ import java.util.List;
 public class TaskService {
     private final TaskRepository taskRepository;
 
-    public TaskService(TaskRepository taskRepository, TaskGroupRepository taskGroupRepository) {
+    public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
 
@@ -30,6 +29,12 @@ public class TaskService {
             throw new IllegalArgumentException("Task group does not valid");
         }
         return taskRepository.save(task); // Save the task to the database
+    }
+
+    // Retrieve a task by ID
+    public Task getTaskById(Long id) {
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Taks not found with id: " + id));
     }
 
     // Get all tasks from the database

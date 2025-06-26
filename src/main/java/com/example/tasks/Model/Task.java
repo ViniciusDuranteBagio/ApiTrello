@@ -25,16 +25,17 @@ public class Task {
     private Long taskId;
 
     @NotEmpty
-    @Size(min = 3, max = 100, message = "O nome do deve ter entre 3 e 100 caracteres")
+    @Size(min = 3, max = 100, message = "The title must be between 3 and 100 characters")
     @Column(name = "task_title")
     private String taskTitle;
 
     @Column(name = "task_description")
     private String taskDescription;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "task_status", nullable = false)
-    private String taskStatus;
+    @Enumerated(EnumType.STRING) // salva como texto (ex: "TODO", "IN_PROGRESS", "DONE")
+    @Column(name = "task_status")
+    private TaskStatus taskStatus;
+
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "task_group_id")
