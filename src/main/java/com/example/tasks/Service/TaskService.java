@@ -22,6 +22,11 @@ public class TaskService {
     @Autowired
     private TaskGroupRepository taskGroupRepository;
 
+    public TaskService(TaskRepository taskRepository, TaskGroupRepository taskGroupRepository) {
+        this.taskRepository = taskRepository;
+        this.taskGroupRepository = taskGroupRepository;
+    }
+
     public Task create(Task task) {
         TaskGroup group = taskGroupRepository.findById(task.getTaskGroup().getId())
                 .orElseThrow(() -> new EntityNotFoundException("TaskGroup não encontrado"));
@@ -39,7 +44,8 @@ public class TaskService {
     }
 
     public Task update(Long id, Task updated) {
-        Task task = findById(id);
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Task não encontrada"));
         task.setTitle(updated.getTitle());
         task.setDescription(updated.getDescription());
         task.setStatus(updated.getStatus());

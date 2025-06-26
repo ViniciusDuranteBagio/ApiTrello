@@ -12,6 +12,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
+OBSERVAÇÕES:
+
+Aluno: Kauã Oenning Kuntz
+
+Por algum motivo nao consegui fazer o lombock funcionar então gerei os getters e setters normalmente
+Sobre os testes unitários ao invés de fazer no controller como solicitado, fiz no package de testes mesmo
+e usei o mockito para simular as chamadas da api, vi em um projeto e quis utiliza-lo para aprender
+
+
+LINK POSTMAN PARA REALIZAR TESTES COM AS REQUISIÇÕES: www.postman.com/kauaoenning/api-trello/overview
+ */
+
 @RestController
 @RequestMapping("/boards")
 @RequiredArgsConstructor
@@ -48,16 +61,7 @@ public class BoardController {
     @PutMapping("/{id}")
     public ResponseEntity<Board> update(@PathVariable Long id, @Valid @RequestBody Board board) {
 
-        Board _board = boardService.findById(id);
-
-        if (_board != null) {
-            _board.setName(board.getName());
-            _board.setDescription(board.getDescription());
-
-            return ResponseEntity.ok(boardService.saveBoard(_board));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(boardService.update(id, board));
     }
 
     @DeleteMapping("/{id}")

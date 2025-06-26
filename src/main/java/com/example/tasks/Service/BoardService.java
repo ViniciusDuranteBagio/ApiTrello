@@ -16,11 +16,11 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
-    public Board saveBoard(Board board) {
-        return boardRepository.save(board);
+    public BoardService(BoardRepository boardRepository) {
+        this.boardRepository = boardRepository;
     }
 
-    public Board create(Board board) {
+    public Board saveBoard(Board board) {
         return boardRepository.save(board);
     }
 
@@ -34,7 +34,9 @@ public class BoardService {
     }
 
     public Board update(Long id, Board updated) {
-        Board board = findById(id);
+        Board board = boardRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Board não encontrado"));
+
         board.setName(updated.getName());
         board.setDescription(updated.getDescription());
         return boardRepository.save(board);

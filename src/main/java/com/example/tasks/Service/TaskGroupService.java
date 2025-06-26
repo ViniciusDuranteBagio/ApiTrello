@@ -1,6 +1,7 @@
 package com.example.tasks.Service;
 
 import com.example.tasks.Model.Board;
+import com.example.tasks.Model.Task;
 import com.example.tasks.Model.TaskGroup;
 import com.example.tasks.Repository.BoardRepository;
 import com.example.tasks.Repository.TaskGroupRepository;
@@ -21,6 +22,11 @@ public class TaskGroupService {
     @Autowired
     private BoardRepository boardRepository;
 
+    public TaskGroupService(BoardRepository boardRepository, TaskGroupRepository taskGroupRepository) {
+        this.boardRepository = boardRepository;
+        this.taskGroupRepository = taskGroupRepository;
+    }
+
     public TaskGroup create(TaskGroup taskGroup) {
         Board board = boardRepository.findById(taskGroup.getBoard().getId())
                 .orElseThrow(() -> new EntityNotFoundException("Board não encontrado"));
@@ -38,7 +44,8 @@ public class TaskGroupService {
     }
 
     public TaskGroup update(Long id, TaskGroup updated) {
-        TaskGroup existing = findById(id);
+        TaskGroup existing = taskGroupRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("TaskGroup não encontrado"));
         existing.setName(updated.getName());
         return taskGroupRepository.save(existing);
     }

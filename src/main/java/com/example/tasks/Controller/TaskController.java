@@ -47,11 +47,7 @@ public class TaskController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Task> update(@PathVariable Long id, @Valid @RequestBody Task task) {
-        try {
-            return ResponseEntity.ok(taskService.update(id, task));
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(taskService.update(id, task));
     }
 
     @DeleteMapping("/{id}")
