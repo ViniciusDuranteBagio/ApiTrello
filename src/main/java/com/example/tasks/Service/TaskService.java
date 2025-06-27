@@ -12,7 +12,6 @@ public class TaskService {
     private TaskGroupRepository taskGroupRepository = null;
     private final TaskRepository taskRepository;
 
-    // Construtor para injetar os dois repositórios
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
         this.taskGroupRepository = taskGroupRepository;
