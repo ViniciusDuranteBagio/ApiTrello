@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 
 
-public class Board {
+public class BoardModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,5 +22,5 @@ public class Board {
     @Size(min = 3, message = "O título deve ter pelo menos 3 caracteres")
     private String name;
     private String description;
-    private ArrayList<TaskGroup> taskGrop;
+    private ArrayList<TaskGroupModel> taskGrop;
 }

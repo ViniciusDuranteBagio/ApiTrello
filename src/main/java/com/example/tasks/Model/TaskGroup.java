@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class TaskGroup {
+public class TaskGroupModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +21,7 @@ public class TaskGroup {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Bord_Id", nullable = false)
-    private Board BoardId;
+    private BoardModel BoardId;
 
-    private ArrayList<Task> tasks;
+    private ArrayList<TaskModel> tasks;
 }
