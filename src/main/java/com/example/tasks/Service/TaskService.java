@@ -43,7 +43,7 @@ public class TaskService {
 
     // Get all tasks from the database
     public List<Task> getAllTasks() {
-        return taskRepository.findAll(); // Get all tasks from the database
+        return taskRepository.findAll(); 
     }
 
     // Update the task
