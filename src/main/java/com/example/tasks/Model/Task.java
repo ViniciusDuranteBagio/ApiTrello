@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "task", schema = "api_trello")
+@Table(name = "task")
 public class Task {
 
     @Id
@@ -43,6 +43,4 @@ public class Task {
 
     public Task(String name, String description, String status) {
     }
-
-
 }

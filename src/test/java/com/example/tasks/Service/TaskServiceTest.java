@@ -20,7 +20,7 @@ public class TaskServiceTest {
 
     @Test
     void returnTasksById(){
-        TaskRepository taskRepo = mock(TaskRepository.class); // import static org.mockito.Mockito.mock -- > mock do substitui a implementação real que acessaria o banco de dados, com vários métodos que podem ser chamados
+        TaskRepository taskRepo = mock(TaskRepository.class);
         TaskService service = new TaskService(taskRepo);
 
         TaskGroup group = new TaskGroup();
@@ -39,7 +39,7 @@ public class TaskServiceTest {
 
         assertNotNull(result);
         assertEquals("Test Task", result.getTaskTitle());
-        assertEquals(TaskStatus.TODO, task.getTaskStatus());
+        assertEquals(TaskStatus.TODO, result.getTaskStatus());
         assertEquals("Test Group", result.getTaskGroup().getTaskGroupName());
     }
 }

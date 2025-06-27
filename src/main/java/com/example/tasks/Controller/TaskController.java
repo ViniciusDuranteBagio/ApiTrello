@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/task")
+@RequestMapping("/task")
 public class TaskController {
 
     @Autowired

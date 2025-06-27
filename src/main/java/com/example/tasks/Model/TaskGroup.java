@@ -1,5 +1,6 @@
 package com.example.tasks.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -17,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 
-@Table(name = "task_group", schema = "api_trello")
+@Table(name = "task_group")
 public class TaskGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +30,9 @@ public class TaskGroup {
     @Size(min = 3, max = 100, message = "The name must be between 3 and 100 characters")
     private String taskGroupName;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "board_id")
+    @JsonBackReference // Avoids infinite recursion in JSON serialization
     private Board board;
 
     @OneToMany(mappedBy = "taskGroup", cascade = CascadeType.ALL, orphanRemoval = true) //

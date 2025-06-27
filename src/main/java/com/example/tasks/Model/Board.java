@@ -1,5 +1,6 @@
 package com.example.tasks.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -16,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "board", schema = "api_trello")
+@Table(name = "board")
 public class Board {
 
     @Id
@@ -33,5 +34,7 @@ public class Board {
     private String boardDescription;
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<TaskGroup> boardGroups = new ArrayList<>();
+
 }

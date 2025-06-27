@@ -44,9 +44,7 @@ public class BoardService {
         if (updatedBoard.getBoardDescription() != null && !updatedBoard.getBoardDescription().isEmpty()){
             existingBoard.setBoardDescription(updatedBoard.getBoardDescription());
         }
-
         return boardRepository.save(existingBoard);
-
     }
     // Delete board
     public void deleteBoard (Long boardId) {

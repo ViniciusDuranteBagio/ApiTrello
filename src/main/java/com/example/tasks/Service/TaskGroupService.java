@@ -1,6 +1,7 @@
 package com.example.tasks.Service;
 
 import com.example.tasks.Model.TaskGroup;
+import com.example.tasks.Repository.BoardRepository;
 import com.example.tasks.Repository.TaskGroupRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +10,13 @@ import java.util.List;
 @Service
 public class TaskGroupService {
     private final TaskGroupRepository taskGroupRepository;
+    private final BoardRepository boardRepository;
 
-    public TaskGroupService(TaskGroupRepository taskGroupRepository) {
+    public TaskGroupService(TaskGroupRepository taskGroupRepository, BoardRepository boardRepository) {
         this.taskGroupRepository = taskGroupRepository;
+        this.boardRepository = boardRepository;
     }
 
-    // Create a new task group
     public TaskGroup createTask(TaskGroup taskGroup){
         if (taskGroup.getTaskGroupName() == null || taskGroup.getTaskGroupName().length() < 3) {
             throw new IllegalArgumentException("Task group name must be at least 3 characters long");
@@ -22,11 +24,17 @@ public class TaskGroupService {
         if (taskGroup.getBoard() == null) {
             throw new IllegalArgumentException("Board cannot be null");
         }
-        boolean exists = taskGroupRepository.existsById(taskGroup.getBoard().getBoardId());
-        if (!exists){
+        Long boardId = taskGroup.getBoard().getBoardId();
+        System.out.println("Board ID recebido: " + boardId); // log para debug
+        if (boardId == null) {
+            throw new IllegalArgumentException("Board ID cannot be null");
+        }
+        boolean exists = boardRepository.existsById(boardId);
+        System.out.println("Board existe no repo? " + exists); // log para debug
+        if (!exists) {
             throw new IllegalArgumentException("Board does not valid");
         }
-        return taskGroupRepository.save(taskGroup); // Save the task group to the database
+        return taskGroupRepository.save(taskGroup);
     }
 
     // Get task group by id
@@ -50,7 +58,7 @@ public class TaskGroupService {
         }
 
         if (updatedTaskGroup.getBoard() != null) {
-            boolean exists = taskGroupRepository.existsById(updatedTaskGroup.getBoard().getBoardId());
+            boolean exists = boardRepository.existsById(updatedTaskGroup.getBoard().getBoardId());
             if (!exists) {
                 throw new IllegalArgumentException("Board does not valid");
             }
