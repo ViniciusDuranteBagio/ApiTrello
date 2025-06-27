@@ -16,18 +16,8 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, length = 100)
-    @NotBlank(message = "Título é obrigatório")
-    private String title;
-
+    @NotBlank(message = "não pode ser vazio")
+    private String name;
     private String description;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Status status;
-
-    @ManyToOne
-    @JoinColumn(name = "task_group_id", nullable = false)
-    private TaskGroup taskGroup;
+    private String status;
 }
