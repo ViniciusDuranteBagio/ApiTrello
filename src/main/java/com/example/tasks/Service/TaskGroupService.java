@@ -16,7 +16,7 @@ public class TaskGroupService {
         this.taskGroupRepository = taskGroupRepository;
         this.boardRepository = boardRepository;
     }
-
+    // Create new Task Group
     public TaskGroup createTask(TaskGroup taskGroup){
         if (taskGroup.getTaskGroupName() == null || taskGroup.getTaskGroupName().length() < 3) {
             throw new IllegalArgumentException("Task group name must be at least 3 characters long");
