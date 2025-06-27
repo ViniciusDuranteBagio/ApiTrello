@@ -11,14 +11,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-/* NÃO SEI O QUE ESTÁ ERRADO, NÃO ESTOU A CONSEGUIR FAZER O TESTE INTEGRADO,
-NÃO SEI SE É A CONFIGURAÇÃO DO SPRING OU SE É O TESTE EM SI
-
-TENTEI ARRUAR COM CHAT POREM NÃO FUNCIONOU, NÃO SEI O QUE ESTÁ ERRADO DE VERDADE
-
-FOI VERIFICADO AS CLASSES POREM ESTA TUDO OK E FICA A DAR ERRO
-*/
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TaskControllerIntegrationTest {
 
@@ -37,6 +29,5 @@ public class TaskControllerIntegrationTest {
 
         List<Task> tasks = response.getBody();
     }
-
 }
 
