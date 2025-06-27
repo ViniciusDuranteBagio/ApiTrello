@@ -14,7 +14,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 
 
-public class BoardsModel {
+public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

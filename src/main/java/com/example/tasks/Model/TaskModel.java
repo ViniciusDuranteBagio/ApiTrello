@@ -1,34 +1,19 @@
 package com.example.tasks.Model;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-//Criação de construtures
-@Data
-@NoArgsConstructor
+@Getter
+@Setter
 @AllArgsConstructor
-
-
-public class TaskModel {
+public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @NotBlank(message = "O título é obrigatório")
-    private String title;
+    private String name;
     private String description;
-
-    @Enumerated(EnumType.STRING)
-    private Status status;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TaskGroup_Id", nullable = false)
-    private TaskGroup taskGroupId;
-
-    private enum Status {
-        TODO,
-        IN_PROGRESS,
-        DONE
-    }
+    private String status;
 }

@@ -1,7 +1,6 @@
 package com.example.tasks.Model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -22,7 +21,7 @@ public class TaskGroup {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Bord_Id", nullable = false)
-    private BoardsModel BoardId;
+    private Board BoardId;
 
     private ArrayList<Task> tasks;
 }
