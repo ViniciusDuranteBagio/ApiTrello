@@ -5,13 +5,14 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //Criação de construtures
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class TaskGroupModel {
+@Entity
+public class TaskGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +22,12 @@ public class TaskGroupModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Bord_Id", nullable = false)
-    private BoardModel BoardId;
+    private Board BoardId;
 
-    private ArrayList<TaskModel> tasks;
+    @OneToMany(mappedBy = "taskGroup", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "board_id", nullable = false)
+    private Board board;
 }

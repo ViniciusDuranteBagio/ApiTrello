@@ -1,20 +1,18 @@
 package com.example.tasks.Model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.ArrayList;
 
 //Criação de construtures
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
-
-public class BoardModel {
+public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,5 +20,7 @@ public class BoardModel {
     @Size(min = 3, message = "O título deve ter pelo menos 3 caracteres")
     private String name;
     private String description;
-    private ArrayList<TaskGroupModel> taskGrop;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private ArrayList<TaskGroup> taskGroup;
 }
