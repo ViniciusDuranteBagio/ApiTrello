@@ -32,7 +32,7 @@ public class TaskGroup {
 
     @ManyToOne
     @JoinColumn(name = "board_id")
-    @JsonBackReference // Avoids infinite recursion in JSON serialization
+    @JsonBackReference // Avoids infinite loop in JSON serialization
     private Board board;
 
     @OneToMany(mappedBy = "taskGroup", cascade = CascadeType.ALL, orphanRemoval = true) //
