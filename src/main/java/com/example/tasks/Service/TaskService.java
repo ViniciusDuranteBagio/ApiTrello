@@ -1,48 +1,49 @@
 package com.example.tasks.Service;
 
 import com.example.tasks.Model.Task;
-import com.example.tasks.Model.TaskGroup;
-import com.example.tasks.Repository.TaskGroupRepository;
 import com.example.tasks.Repository.TaskRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class TaskService {
-
     @Autowired
-    private TaskRepository taskRepository;
+    private TaskRepository taskRepo;
 
-    @Autowired
-    private TaskGroupRepository taskGroupRepository;
+    public Task create(Task tasks) {
+        return taskRepo.save(tasks);
+    }
 
-    public Task createTask(Task task, Long taskGroupId) {
-        TaskGroup taskGroup = taskGroupRepository.findById(taskGroupId)
-                .orElseThrow(() -> new RuntimeException("TaskGroup não encontrado"));
-        task.setTaskGroup(taskGroup);
-        return taskRepository.save(task);
+    public List<Task> saveAll(List<Task> tasks) {
+        return taskRepo.saveAll(tasks);
+    }
+
+    public List<Task> listAll() {
+        return taskRepo.findAll();
     }
 
     public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+        return List.of();
     }
 
-    public Task getTaskById(Long id) {
-        return taskRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Task não encontrada"));
+    public Task findById(Long id) {
+        return taskRepo.findById(id).orElseThrow(() -> new RuntimeException("Task não encontrado"));
     }
 
-    public Task updateTask(Long id, Task updatedTask) {
-        Task existing = getTaskById(id);
-        existing.setTitle(updatedTask.getTitle());
-        existing.setDescription(updatedTask.getDescription());
-        existing.setStatus(updatedTask.getStatus());
-        return taskRepository.save(existing);
+    public TaskService(TaskRepository taskRepo) {
+        this.taskRepo = taskRepo;
     }
 
-    public void deleteTask(Long id) {
-        taskRepository.deleteById(id);
+    public Task update(Long id, @Valid Task task) {
+        Task existing = taskRepo.findById(id).orElseThrow(() -> new RuntimeException("Task não encontrado"));
+
+        existing.setName(task.getName());
+        existing.setDescription(task.getDescription());
+        existing.setStatus(task.getStatus());
+        existing.setTaskGroup(task.getTaskGroup());
+
+        return taskRepo.save(existing);
     }
 }

@@ -11,6 +11,6 @@ public class TarefaServiceTest {
     @Test
     public void deveFormatarTituloCorretamente() {
         String resultado = tarefaService.formatarTitulo("Estudar");
-        assertEquals("Tarefa: Estudar", resultado);
+        assertEquals("Tarefa do Trello: Estudar", resultado);
     }
 }
