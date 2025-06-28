@@ -20,7 +20,7 @@ public class TaskControllerIntegrationTest {
     @Test
     void shouldReturnAllTasks() {
         ResponseEntity<List<Task>> response = restTemplate.exchange(
-                "/api/task",
+                "/task",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Task>>() {
