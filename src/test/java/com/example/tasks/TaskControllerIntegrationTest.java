@@ -11,11 +11,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-/*
-NÃO CONSEGUI FAZER ISSO FUNCIONAR, USEI CHAT GPT PARA SOLUCUINAR O PROBLEMA, REALIZEI MODIFICAÇÕES EM OUTRAS CLASSES E AQUI... 
-PORÉM NÃO CONSEGUI RESOLVER O PROBLEMA
-*/
-
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TaskControllerIntegrationTest {
 
